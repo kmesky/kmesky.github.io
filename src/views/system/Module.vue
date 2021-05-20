@@ -248,7 +248,8 @@ export default {
       ModuleGet(arr.id)
         .then(res => {
           console.log(JSON.stringify(res))
-          this.form = res.data.data
+          this.form = res.data
+          // this.form = res.data.data
           this.$refs.tree.setCheckedNodes([])
           this.$refs.tree.setCheckedNodes([arr])
         })
@@ -327,5 +328,4 @@ export default {
   width: 100%;
 }
 </style>
- 
- 
+
