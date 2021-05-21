@@ -89,7 +89,7 @@ export default {
           // 注释
           login(this.ruleForm).then(res => {
             console.info(res)
-            if (res.success) {
+            if (res.code===200) {
               if (this.rememberpwd) {
                 //保存帐号到cookie，有效期7天
                 setCookie('user', this.ruleForm.username, 7)
@@ -124,6 +124,10 @@ export default {
         }
       })
     },
+    // 获取图形验证码
+    getcode(){
+
+    }
   }
 }
 </script>
