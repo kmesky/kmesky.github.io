@@ -59,13 +59,10 @@ export {
 
 
 import {Message,Loading} from 'element-ui'
-import router from '../router'
 
-// let loading ;
 //  请求拦截
 axios.interceptors.request.use(config=> {
-  console.info(11)
-  Loading.service({text:"Loading..."});
+  Loading.service({text:"正在加载..."});
   return config;
 }, err=> {
   Message.error({message: '请求超时!'});
@@ -73,21 +70,21 @@ axios.interceptors.request.use(config=> {
 })
 //  响应拦截
 axios.interceptors.response.use(res=> {
-  console.info(res.status)
-  console.info(222)
   Loading.service().close();
   return res;
 }, function (err) {
   Loading.service().close();
-  console.info(err.response)
-  console.info(333)
-  if (err.response.status == 504||err.response.status == 404) {
+  if (err.response.status === 504||err.response.status === 404) {
     Message.error({message: '服务器被吃了⊙﹏⊙∥'});
-  } else if (err.response.status == 403) {
+  } else if (err.response.status === 401) {
+    Message.error({message: '尚未登录或登录状态已失效，请重新登录！'});
+    localStorage.setItem("userInfo", "");
+    location.href="/login";
+  } else if (err.response.status === 403) {
     Message.error({message: '权限不足,请联系管理员!'});
   } else {
     Message.error({message: '未知错误'});
   }
-  return Promise.reject(err);
+  // return Promise.reject(err);
 })
 

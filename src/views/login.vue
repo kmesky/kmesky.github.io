@@ -56,7 +56,7 @@ export default {
   // 创建完毕状态(里面是操作)
   created() {
     this.$message({
-      message: '账号密码及验证码不为空即可',
+      message: '欢迎您，请登录！',
       type: 'success'
     })
     // 获取图形验证码
@@ -69,7 +69,7 @@ export default {
   methods: {
     // 获取用户名密码
     getuserpwd() {
-      if (getCookie('user') != '' && getCookie('pwd') != '') {
+      if (getCookie('user') !== '' && getCookie('pwd') !== '') {
         this.ruleForm.username = getCookie('user')
         this.ruleForm.password = getCookie('pwd')
         this.rememberpwd = true
@@ -114,6 +114,9 @@ export default {
               this.logining = false
               return false
             }
+          }).catch( err => {
+            this.$message.error("登录失败")
+            this.logining = false
           })
         } else {
           // 获取图形验证码
