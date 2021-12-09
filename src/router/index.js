@@ -50,10 +50,14 @@ import druidLogin from '@/views/druid/login';
 // 图表界面
 import statistics from '@/views/charts/statistics';
 
+// import 用来导入vue所在路径
+// 小工具
+import wake from '@/views/tools/wake';
+
 // 启用路由
 Vue.use(Router);
 
-// 导出路由 
+// 导出路由
 export default new Router({
     routes: [{
         path: '/',
@@ -171,6 +175,15 @@ export default new Router({
             path: '/charts/statistics',
             name: '数据可视化',
             component: statistics,
+            meta: {
+                requireAuth: true
+            }
+        }, {
+            // 匹配路径地址，如菜单中的路径
+            path: '/wol/wake',
+            name: '远程唤醒',
+            // 对应匹配 import 来的 vue 组件
+            component: wake,
             meta: {
                 requireAuth: true
             }

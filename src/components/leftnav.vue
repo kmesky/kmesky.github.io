@@ -168,6 +168,23 @@ export default {
               menus: null
             }
           ]
+        },
+        {
+          menuid: 5,
+          icon: 'li-icon-shangchengxitongtubiaozitihuayuanwenjian91',
+          menuname: '小工具',
+          hasThird: null,
+          url: null,
+          menus: [
+            {
+              menuid: 510,
+              icon: 'icon-provider-manage',
+              menuname: '远程唤醒',
+              hasThird: 'N',
+              url: 'wol/wake',
+              menus: null
+            }
+          ]
         }
       ],
       msg: 'success'
