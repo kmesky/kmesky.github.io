@@ -92,13 +92,14 @@ export default {
             if (res.code===200) {
               if (this.rememberpwd) {
                 //保存帐号到cookie，有效期7天
-                setCookie('user', this.ruleForm.username, 7)
+                setCookie('user', this.ruleForm.username, 1)
                 //保存密码到cookie，有效期7天
-                setCookie('pwd', this.ruleForm.password, 7)
+                setCookie('pwd', this.ruleForm.password, 1)
               } else {
                 delCookie('user')
                 delCookie('pwd')
               }
+              this.$message.success("登录成功，正在跳转...")
               //如果请求成功就让他2秒跳转路由
               setTimeout(() => {
                 this.logining = false
@@ -108,7 +109,7 @@ export default {
                 localStorage.setItem('userdata', JSON.stringify(res.data))
                 this.$store.commit('login', 'true')
                 this.$router.push({ path: '/goods/Goods' })
-              }, 1000)
+              }, 1500)
             } else {
               this.$message.error(res.msg)
               this.logining = false
